@@ -50,6 +50,10 @@ Here we provide the following Standard Statistical Distributions;
 
 These distributions have implementations of pdf, log_pdf, cdf, log_cdf, and sampling.
 
+## Hidden Markov Model
+
+Traditional implementation of forward and backward algorithm.
+
 ## Multi-Arm Bandit
 
 Here we provide the following multi-arm bandit implementations;
