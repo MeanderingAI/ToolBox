@@ -6,21 +6,25 @@
 #include <algorithm>
 
 // Friend function to compute the Gini impurity.
-double calculate_gini_impurity(const std::vector<int>& y) {
-    if (y.empty()) {
+double calculate_gini_impurity(const std::vector<T>& y) {
+    if (y.empty()) return 0.0;
+    
+    // Mock implementation for demonstration
+    if constexpr (std::is_same_v<T, int>) {
+        std::map<T, int> counts;
+        for (const auto& val : y) counts[val]++;
+        double impurity = 1.0;
+        double total_count = y.size();
+        for (const auto& pair : counts) {
+            double p = static_cast<double>(pair.second) / total_count;
+            impurity -= p * p;
+        }
+        return impurity;
+    } else {
+        // Gini impurity is not typically used for regression.
+        // We'll return 0.0 for this example.
         return 0.0;
     }
-    std::map<int, int> class_counts;
-    for (int label : y) {
-        class_counts[label]++;
-    }
-
-    double gini = 1.0;
-    for (const auto& pair : class_counts) {
-        double prob = static_cast<double>(pair.second) / y.size();
-        gini -= prob * prob;
-    }
-    return gini;
 }
 
 // Friend function to compute the Entropy.

@@ -102,6 +102,7 @@
         "csignal": "cpp",
         "shared_mutex": "cpp",
         "cfenv": "cpp",
-        "__locale": "cpp"
+        "__locale": "cpp",
+        "stdfloat": "cpp"
     }
 }
