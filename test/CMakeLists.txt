@@ -11,6 +11,14 @@ target_link_libraries(tracker_tests PRIVATE tracker Eigen3::Eigen gtest_main)
 target_include_directories(tracker_tests PRIVATE ${CMAKE_SOURCE_DIR}/include)
 add_test(NAME TrackerTests COMMAND tracker_tests)
 
+set(LSA_SOURCES
+    test_latent_sentiment_analysis.cpp
+)
+add_executable(lsa_tests ${LSA_SOURCES})
+target_link_libraries(lsa_tests PRIVATE latent_sentiment_analysis Eigen3::Eigen gtest_main)
+target_include_directories(lsa_tests PRIVATE ${CMAKE_SOURCE_DIR}/include/latent_sentiment_analysis)
+add_test(NAME LSATests COMMAND lsa_tests)
+
 set(HMM_SOURCES
     test_hidden_markov_model.cpp
 )
