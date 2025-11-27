@@ -72,6 +72,10 @@ Here we provide implementation of support vector machines with the following ker
 3. Gaussian 
 4. Sigmoid
 
+## Latent Sentiment Analysis
+
+Latent Sentiment Analysis is a technique in natural language processing which discovers distributional semantics of relationships between a set of documents and associated terms. 
+
 # Dependencies
 
 ## GSL
