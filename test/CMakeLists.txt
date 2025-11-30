@@ -93,3 +93,35 @@ add_executable(pcim_tests ${PCIM_SOURCES})
 target_link_libraries(pcim_tests PRIVATE marked_point_process Eigen3::Eigen gtest_main)
 target_include_directories(pcim_tests PRIVATE ${CMAKE_SOURCE_DIR}/include/marked_point_process)
 add_test(NAME PCIMTests COMMAND pcim_tests)
+
+set(SVD_SOURCES
+    test_svd.cpp
+)
+add_executable(svd_tests ${SVD_SOURCES})
+target_link_libraries(svd_tests PRIVATE dimensionality_reduction Eigen3::Eigen gtest_main)
+target_include_directories(svd_tests PRIVATE ${CMAKE_SOURCE_DIR}/include)
+add_test(NAME SVDTests COMMAND svd_tests)
+
+set(PCA_SOURCES
+    test_pca.cpp
+)
+add_executable(pca_tests ${PCA_SOURCES})
+target_link_libraries(pca_tests PRIVATE dimensionality_reduction Eigen3::Eigen gtest_main)
+target_include_directories(pca_tests PRIVATE ${CMAKE_SOURCE_DIR}/include)
+add_test(NAME PCATests COMMAND pca_tests)
+
+set(KNN_SOURCES
+    test_knn.cpp
+)
+add_executable(knn_tests ${KNN_SOURCES})
+target_link_libraries(knn_tests PRIVATE dimensionality_reduction Eigen3::Eigen gtest_main)
+target_include_directories(knn_tests PRIVATE ${CMAKE_SOURCE_DIR}/include)
+add_test(NAME KNNTests COMMAND knn_tests)
+
+set(UMAP_SOURCES
+    test_umap.cpp
+)
+add_executable(umap_tests ${UMAP_SOURCES})
+target_link_libraries(umap_tests PRIVATE dimensionality_reduction Eigen3::Eigen gtest_main)
+target_include_directories(umap_tests PRIVATE ${CMAKE_SOURCE_DIR}/include)
+add_test(NAME UMAPTests COMMAND umap_tests)
