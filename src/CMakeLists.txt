@@ -1,5 +1,6 @@
 add_subdirectory(bayesian_network)
 add_subdirectory(decision_tree)
+add_subdirectory(dimensionality_reduction)
 add_subdirectory(distribution)
 add_subdirectory(tracker)
 add_subdirectory(hidden_markov_model)

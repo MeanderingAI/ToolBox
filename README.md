@@ -127,6 +127,76 @@ Non-stationary temporal point process modeling:
 4. Model selection (AIC/BIC)
 5. Applications: market microstructure, crime patterns, healthcare monitoring
 
+## Dimensionality Reduction
+
+Comprehensive suite of dimensionality reduction algorithms for feature extraction, visualization, and manifold learning:
+
+### 1. **Singular Value Decomposition (SVD)**
+   - Thin and full SVD computation using Eigen's BDCSVD
+   - Low-rank matrix approximation and reconstruction
+   - Matrix rank estimation with tolerance
+   - Explained variance analysis
+   - Applications: matrix compression, noise reduction, latent semantic analysis
+
+### 2. **Principal Component Analysis (PCA)**
+   - Linear dimensionality reduction via SVD
+   - Data centering and optional standardization (scaling)
+   - Principal component extraction (loadings)
+   - Variance explained computation
+   - Forward and inverse transformation
+   - Applications: data visualization, feature extraction, preprocessing
+
+### 3. **k-Nearest Neighbors (KNN)**
+   - Efficient brute-force nearest neighbor search
+   - Multiple distance metrics: Euclidean, Manhattan, Cosine
+   - Pairwise distance computation
+   - Self-exclusion option for training data queries
+   - Foundation for manifold learning algorithms
+
+### 4. **Uniform Manifold Approximation and Projection (UMAP)**
+   - State-of-the-art non-linear dimensionality reduction
+   - Preserves both local and global data structure
+   - Fuzzy simplicial set construction
+   - Stochastic gradient descent optimization
+   - Superior to t-SNE for many applications
+   - Applications: visualization, cluster analysis, anomaly detection
+
+**Example (C++ with Eigen):**
+
+```cpp
+#include "dimensionality_reduction/pca.h"
+#include "dimensionality_reduction/knn.h"
+#include "dimensionality_reduction/umap.h"
+
+// PCA for linear dimensionality reduction
+Eigen::MatrixXd X = /* your data (n_samples x n_features) */;
+PCA pca(10, true, false);  // 10 components, center=true, scale=false
+pca.fit(X);
+Eigen::MatrixXd X_pca = pca.transform(X);
+
+// KNN for nearest neighbor queries
+KNN knn(15, "euclidean");  // k=15 neighbors
+knn.fit(X);
+auto [indices, distances] = knn.kneighbors();
+
+// UMAP for non-linear manifold learning
+UMAP umap(2, 15, 0.1, "euclidean", 1.0, 200, 42);
+// n_components=2, n_neighbors=15, min_dist=0.1
+Eigen::MatrixXd X_umap = umap.fit_transform(X);
+```
+
+**Key Differences:**
+- **PCA**: Linear, fast, preserves global variance structure
+- **UMAP**: Non-linear, slower, preserves local neighborhood structure and global topology
+- **t-SNE vs UMAP**: UMAP scales better, faster convergence, preserves more global structure
+
+**Notes:**
+- Use PCA when relationships are linear or for quick exploration
+- Use UMAP for complex manifolds and better cluster separation
+- For very high-dimensional data (>50 features), consider PCA preprocessing before UMAP
+- All algorithms exposed via Python bindings in `ml_core.dimensionality_reduction`
+- Scaling recommended when features have different units/scales
+
 # Dependencies
 
 ## GSL
